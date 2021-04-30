@@ -3,7 +3,7 @@ toc::[]
 
 = Version-Control
 
-image::images/version-control.png["version-control logo"]
+image::images/version-control.png["version-control logo",width="20%"]
 
 _Version-control is the link:scm.asciidoc[SCM] discipline of identifying and persistently recording the configuration of a software product with its source artifacts at discrete points in time and on particular branches for the purposes of systematically controlling changes and maintaining the integrity and traceability throughout the life-cycle of the software product and its source artifacts._
 
