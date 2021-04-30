@@ -1,0 +1,17 @@
+.*
+!.github
+!.gitignore
+!.mvn
+*.class
+*.classpath
+*.project
+*.iml
+*.log
+*.bak
+*.jar
+*.war
+*.ear
+hs_err_pid*
+target/
+eclipse-target/
+generated/
