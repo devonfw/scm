@@ -3,9 +3,9 @@ toc::[]
 
 = Issue-Tracking
 
-image::images/issue-tracking.png["issue-tracking logo"]
+image::images/issue-tracking.png["issue-tracking logo",width="20%"]
 
-_Issue-tracking is identifying and persistently storing issues (problem tickets, change-requests, etc.) with their metadata and thread of communications for the purpose of tracking the possible long-term evolution, state transition and assignment of the issues._
+_Issue-tracking is the link:scm.asciidoc[SCM] discipline of identifying and persistently storing issues (problem tickets, change-requests, etc.) with their metadata and thread of communications for the purpose of tracking the possible long-term evolution, state transition and assignment of the issues._
 
 == Best practices
 
@@ -40,4 +40,3 @@ A typicaly template for a commit message looks as following:
 
 In an ideal situation, you never have any commit without an issue-association.
 However, you have to consider, what is efficient and good enough for your project.
-
