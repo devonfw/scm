@@ -3,9 +3,9 @@ toc::[]
 
 = Version-Identification
 
-image::images/version-identification.png["version-identification logo"]
+image::images/version-identification.png["version-identification logo",width="20%"]
 
-_ Version-indentification is the link:scm.asciidoc[SCM] discipline of defining the structure, syntax and semantic of version identifiers. It aims to ensure a precise identification of any delivered artifact of a software product._
+_Version-indentification is the link:scm.asciidoc[SCM] discipline of defining the structure, syntax and semantic of version identifiers. It aims to ensure a precise identification of any delivered artifact of a software product._
 
 == Best practices
 
