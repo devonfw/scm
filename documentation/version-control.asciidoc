@@ -73,7 +73,7 @@ If something went wrong with your release, create a new one with a link:version-
 === Do not versiong-control derived artifacts
 
 You should never commit your build artifacts or third-party libraries into your version-control-system.
-Instead deploy such artifacts to the link:artifact-management.asciidoc[artifact].
+Instead deploy such artifacts to the link:artifact-management.asciidoc[artifact-repository].
 
 == Tools
 
