@@ -8,6 +8,9 @@
    xmlns:xlink="http://www.w3.org/1999/xlink"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   inkscape:export-ydpi="96"
+   inkscape:export-xdpi="96"
+   inkscape:export-filename="/Users/hohwille/projects/devon/workspaces/main/scm/documentation/images/scm.png"
    width="207.94087mm"
    height="208.03816mm"
    viewBox="0 0 207.94087 208.03816"
@@ -84,14 +87,22 @@
        d="M 135.16448,89.0004 116.6029,99.61538 c 2.7134,5.96261 0.49133,13.11997 -5.30674,16.43345 -1.30591,0.74383 -2.69124,1.23447 -4.09042,1.48673 l -0.0942,21.50162 c 5.04352,-0.31785 10.09813,-1.76115 14.78055,-4.43985 16.03935,-9.17168 21.81895,-29.37323 13.27239,-45.59693 z"
        style="fill:#1b75bc;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:0.923779"
        id="path466" />
-    <path
-       d="m 191.72106,102.66922 h 17.3351 C 207.79736,47.11982 163.02255,2.3276942 107.50128,1.0645842 V 18.407254 c 45.28275,1.23817 81.88965,37.223586 84.14035,82.265196 0.0333,0.66436 0.0582,1.32871 0.0794,1.99677 z"
-       style="fill:#cccccc;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:0.923779"
-       id="path468" />
-    <path
-       d="m 191.73214,107.00374 c -1.01037,46.19292 -38.12153,83.48581 -84.23086,84.74153 v 17.34637 c 55.68012,-1.26681 100.5482,-46.31581 101.56227,-102.0879 z"
-       style="fill:#cccccc;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:0.923779"
-       id="path470" />
+    <a
+       xlink:href="https://en.wikipedia.org/wiki/Software_development"
+       id="a607">
+      <path
+         id="path468"
+         style="fill:#cccccc;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:0.923779"
+         d="m 191.72106,102.66922 h 17.3351 C 207.79736,47.11982 163.02255,2.3276942 107.50128,1.0645842 V 18.407254 c 45.28275,1.23817 81.88965,37.223586 84.14035,82.265196 0.0333,0.66436 0.0582,1.32871 0.0794,1.99677 z" />
+    </a>
+    <a
+       xlink:href="https://en.wikipedia.org/w/index.php?title=IT_Operations&amp;redirect=no"
+       id="a610">
+      <path
+         id="path470"
+         style="fill:#cccccc;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:0.923779"
+         d="m 191.73214,107.00374 c -1.01037,46.19292 -38.12153,83.48581 -84.23086,84.74153 v 17.34637 c 55.68012,-1.26681 100.5482,-46.31581 101.56227,-102.0879 z" />
+    </a>
     <a
        xlink:href="https://github.com/devonfw/scm/blob/master/documentation/scm.asciidoc"
        id="a565">
@@ -136,14 +147,22 @@
          style="fill:#1b93c3;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:0.923779"
          d="m 107.29902,32.31077 v 29.93595 c 22.48668,1.23447 40.33713,19.86337 40.33713,42.66322 0,22.80447 -17.85045,41.43244 -40.33713,42.66691 v 29.93318 c 39.00259,-1.25295 70.23348,-33.27531 70.23348,-72.60009 0,-39.32386 -31.23089,-71.34344 -70.23348,-72.59917 z" />
     </a>
-    <path
-       d="M 18.454083,106.76164 H 1.1226725 C 2.0102125,162.8054 47.184913,208.07801 103.16888,209.09534 V 191.75636 C 56.756623,190.7455 19.341623,153.229 18.454083,106.76164 Z"
-       style="fill:#cccccc;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:0.923779"
-       id="path484" />
-    <path
-       d="M 1.1337625,102.42713 H 18.475323 C 19.857883,56.407 57.077103,19.403324 103.16888,18.396164 V 1.0571842 C 47.506313,2.0708142 2.5227825,46.83153 1.1337625,102.42713 Z"
-       style="fill:#cccccc;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:0.923779"
-       id="path486" />
+    <a
+       xlink:href="https://en.wikipedia.org/wiki/Change_management"
+       id="a604">
+      <path
+         id="path484"
+         style="fill:#cccccc;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:0.923779"
+         d="M 18.454083,106.76164 H 1.1226725 C 2.0102125,162.8054 47.184913,208.07801 103.16888,209.09534 V 191.75636 C 56.756623,190.7455 19.341623,153.229 18.454083,106.76164 Z" />
+    </a>
+    <a
+       xlink:href="https://en.wikipedia.org/wiki/Project_management"
+       id="a601">
+      <path
+         id="path486"
+         style="fill:#cccccc;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:0.923779"
+         d="M 1.1337625,102.42713 H 18.475323 C 19.857883,56.407 57.077103,19.403324 103.16888,18.396164 V 1.0571842 C 47.506313,2.0708142 2.5227825,46.83153 1.1337625,102.42713 Z" />
+    </a>
     <text
        transform="matrix(0.47140863,-0.88206921,0.88163716,0.47163965,0,0)"
        style="font-variant:normal;font-weight:normal;font-size:5.696px;font-family:Arial;-inkscape-font-specification:Arial;writing-mode:lr-tb;fill:#4d4d4d;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:0.923779"

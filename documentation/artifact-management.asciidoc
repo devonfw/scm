@@ -3,4 +3,44 @@ toc::[]
 
 = Artifact-Management
 
-TODO
+image::images/artifact-management.png["artifact-management logo"]
+
+_Artifact-anagement is managing release artifacts of own and foreign software products.
+This includes the identification, persistent storage, dependency tracking, and the license management of all pristine release artifacts from the low-level artifact to the deliverable products for the customer._
+
+== Best practices
+
+For artifact-anagement you should follow these best-practices:
+
+=== Strictly versioned Artefacts
+
+Ensure that all artifacts carry the proper version in their filename and metadata.
+
+Strictly apply the version number of each of your artifact (from intermediate to deliverable) to the filename and metadata.
+Ensure the same for third-party artifacts that are integrated in your application.
+
+=== License compatibility check
+
+Properly link the licenses of the artifact.
+Ensure that no license incompatibilities exist in the final product.
+
+Nowadays software products integrate a lot of third-party and especially open-source-software components.
+However, the massive utilisation of third-party artifacts requires extreme care according to their different terms of license.
+Otherwise, you easily end up integrating two components with incompatible licenses.
+To prevent problems, check licenses from the start when you are looking for a particular component from an external source.
+
+We recommend to use the tool https://github.com/devonfw/solicitor[solicitor] to monitor your licenses and reveal potential incompatibilities immediately.
+However, only lawyers can do a positive verification of complex situations.
+
+=== Vulnerability check
+
+IT-Security has become a major aspect of software development.
+One aspect of security is to avoid https://owasp.org/www-project-top-ten/2017/A9_2017-Using_Components_with_Known_Vulnerabilities[using components with known vulnerabilities].
+You should frequently check all your third-party components for known https://en.wikipedia.org/wiki/Common_Vulnerabilities_and_Exposures[CVE]s.
+To do so, we recommend to integrate tools that scan your artifacts for CVEs automatically in your link:build-management.asciidoc[build-management].
+For Java we suggest to use https://owasp.org/www-project-dependency-check/[owasp-dependency-check].
+For a wider range and better management, consider commercial alternatives like https://blog.sonatype.com/nexus-vulnerability-scanner-and-vulnerability-analysis[nexus vulnerability scanner] or https://www.blackducksoftware.com/[blackduck].
+For container images we recommend to use tools like https://goharbor.io/docs/2.0.0/administration/vulnerability-scanning/[harbor].
+Ensure to monitor the findings and be aware that a CVE that has been found only is a potential vulnerability that has to be checked by an expert and can also be a false positive.
+Further, if no CVEs have been found this does not mean that your software is secure.
+

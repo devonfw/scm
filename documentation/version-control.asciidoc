@@ -3,4 +3,82 @@ toc::[]
 
 = Version-Control
 
-TODO
+image::images/version-control.png["version-control logo"]
+
+_Version-control is the link:scm.asciidoc[SCM] discipline of identifying and persistently recording the configuration of a software product with its source artifacts at discrete points in time and on particular branches for the purposes of systematically controlling changes and maintaining the integrity and traceability throughout the life-cycle of the software product and its source artifacts._
+
+== Related Questions
+
+* Who made a particular change and when?
+* Which changes happended at all between date XXX and YYY?
+* When do we merge branches and in which direction?
+* Should we create a branch -- and when?
+* Who is able to read the source artifacts and who can commit changes?
+
+== Best practices
+
+For version-control you should follow these best-practices:
+
+=== Strictly use a version control system
+
+All your work on source-code, configurations, documentation and any other source artifact shall be strictly put into the version-control-system (VCS) of your project.
+Frequently commit your changes and push them to the VCS to avoid loosing any valueable work.
+Your local disc may crash or get corrupted and also you may get sick unplanned and your team should be able to take over.
+If your work is always available on according feature branches, you and your team is prepared for the unexpected.
+A proper backup strategy has to be applied to the VCS on the server-side to ensure the valuable data can not be lost.
+
+=== Clear and simple strategy for branching and merging
+
+Follow a well-defined strategy for branching and merging your source artifacts.
+Balance flexibility for development with stability during maintenance.
+However, keep the number of parallel branches at a minimum.
+
+
+Simply using a version control system (VCS) for managing your source artifacts is not sufficient.
+You also have to follow a well-defined strategy for creating branches and merging them.
+A typical VCS is generic and will not guide you or restrict wrong merging directions.
+
+The overall goal of a version-control strategy is to support the creation of high quality releases.
+
+We strongly recommend to stick to the following rules:
+
+* There is one single default branch that always represents the latest stable development line. We logically call it _mainline_ and technically it is typically called `master` or `main` (at least in git).
+* This mainline shall always contain a working state that allows to build a working release (see link:build-management.asciidoc#continous-integration[continous-integration]).
+* Releases shall be created frequently (according to spring or increment planning or even better automated via link:build-management.asciidoc#continuous-deployment[continuous-deployment]) from the mainline.
+* Avoid maintaining older released whenever possible to reduce complexity. However, if you have to use according release-branches that get frequently merged back to the branch they have been created from.
+
+==== Feature-branch
+
+For each change the developer(s) create feature-branches from the latest _mainline_. Here, they can work on their feature (story) in isolation of other features and changes. A feature should be small and therefore the feature branch can be quickly merged and does not exist for very long (days not years). When the feature is complete, the developer(s) ensure(s) the feature branch is up-to-date via upstream-merging with the mainline. Further, specific quality checks defined by the definition of done (DoD) have to be met for the feature to be complete. Then a pull- or merge-request is created from the feature branch. After a quality assurance and review-process the pull-/merge-request gets merged onto the mainline and the feature is complete.
+
+==== Avoid using git-flow
+
+A common branching- and merging strategy has been published as https://nvie.com/posts/a-successful-git-branching-model/[git-flow].
+While it contains several best practices it also contains aspects that we consider as an anti-pattern:
+The concept of maintaining a `development` and a `master` branch in the way suggested by git-flow is flawed (produces severe problems whith release branching) and adds pointless complexity and maintenance.
+Some problems are also summarized https://about.gitlab.com/blog/2020/03/05/what-is-gitlab-flow/[here].
+As tools like https://github.com[github] or https://gitlab.com[gitlab] have been established, we strongly encourage to use them and follow their more advanced fork and merge workflows.
+Therefore, avoid being misslead by git-flow as it has initially been defined.
+
+=== Strict tagging
+
+Create an immutable tag for every release.
+
+Create a tag for every release of your software.
+Always tag the complete mainline of your version-control-system so everything including documentation is recorded together.
+Follow a clear and simple naming convention for your tags (e.g. `release/«version»` or just `«version»`).
+Tags shall be treated as immutable and are therefore _never_ modified (or deleted and recreated) afterwards.
+If something went wrong with your release, create a new one with a link:version-identification.asciidoc#unique-version-numbers[new version] and a new tag.
+
+=== Do not versiong-control derived artifacts
+
+You should never commit your build artifacts or third-party libraries into your version-control-system.
+Instead deploy such artifacts to the link:artifact-management.asciidoc[artifact].
+
+== Tools
+
+As version-control-system (VCS) we recommend the following tools:
+
+* http://git-scm.com/[Git]
+* https://github.com[github]
+* https://gitlab.com[gitlab]

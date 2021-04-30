@@ -3,4 +3,13 @@ toc::[]
 
 = Configuration
 
-TODO
+_Configuration is the link:scm.asciidoc[SCM] domain of identifying and recording all configuration aspects of a software product._
+
+== Disciplines
+
+The configuration domain consists of the following disciplines:
+
+* link:version-identification.asciidoc[version-identification]
+* link:version-control.asciidoc[version-control]
+* link:artifact-management.asciidoc[artifact-management]
+* link:issue-tracking.asciidoc[issue-tracking]

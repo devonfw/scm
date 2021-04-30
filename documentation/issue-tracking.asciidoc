@@ -3,4 +3,41 @@ toc::[]
 
 = Issue-Tracking
 
-TODO
+image::images/issue-tracking.png["issue-tracking logo"]
+
+_Issue-tracking is identifying and persistently storing issues (problem tickets, change-requests, etc.) with their metadata and thread of communications for the purpose of tracking the possible long-term evolution, state transition and assignment of the issues._
+
+== Best practices
+
+For issue-tracking you should follow these best-practices:
+
+=== Appropriate classification of issues
+Define adequate metadata for your issue-tracking model and ensure that issues are properly classified.
+However, if there is low acceptance to provide the data, then less could be more.
+
+Ensure that the meta-model of your issue-tracking matches your project requirements. 
+In particular, verify that you have the right options for the following classifications:
+ 
+* Issue-type (bug, change-request, task, etc.)
+* Summary (brief title)
+* Description (explanation how to reproduce the bug or description of the feature to build with rationale and acceptance criteria)
+* Affected and fixed version
+* Issue-state and according workflow
+
+=== Link commits with issues
+
+Define a simple but strict rule on how to link commit messages to your version-control with associated issues of your issue-tracking.
+
+The history of version-control and the history of issue-tracking contain important information.
+Maximum value comes out of it, if they both are connected.
+E.g. for reviewing commits, it typically saves a lot of time if the related issue is known.
+This should be done by mapping commits with issues through their unique ID.
+Modern integrated tools support linking issues with commits if simple rules are met (issue ID in commit message).
+A typicaly template for a commit message looks as following:
+```
+#«issue-id»: «describe your change»
+```
+
+In an ideal situation, you never have any commit without an issue-association.
+However, you have to consider, what is efficient and good enough for your project.
+

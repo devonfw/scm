@@ -3,4 +3,35 @@ toc::[]
 
 = Version-Identification
 
-TODO
+image::images/version-identification.png["version-identification logo"]
+
+_ Version-indentification is the link:scm.asciidoc[SCM] discipline of defining the structure, syntax and semantic of version identifiers. It aims to ensure a precise identification of any delivered artifact of a software product._
+
+== Best practices
+
+For version-identification you should follow these best-practices:
+
+=== Define a clear versioning scheme
+
+For your project and products you shall define and document a clear versioning scheme.
+Therefore, you should think about the following aspects:
+
+* How to distinguish a local development or CI build from a release? In Java typically the suffix `-SNAPSHOT` is used to identify development builds.
+* How to distinguish different types of releases? Typically specific labels are used as (optional) part of the versioning scheme such as `alpha`, `beta`, `pre`, `rc` (release-candidate). We recommend not to use extra labels for offical and stable versions. However, common such labels are `RELEASE` (e.g. used by springframework), `GA` (for "general availability" e.g. used by JBoss), `final` (e.g. used by hibernate).
+* How to compare versions? You should define your versioning scheme such that it is always easy to compare two differnet versions and tell which one is higher and which is lower. This can get tricky with too complex versioning schemes (e.g. `3.4.29-pre-4` and `3.4.29-beta-2`). Therefore keep it simple.
+* Should I use semantic versioning or a timestamp/miletone based versioning scheme? Many projects try to express the significance of changes from one release to the next in the version number, e.g. via a versiong scheme such as «major».«minor».«bug-fix».«security-fix».«build-number». This can get tricky for the link:reelase-management.asciidoc[release-management], when you plan releases and stories that should be part of the release and then the scope changes. As projects are managemed more and more in an agile way with CI and CD and therefore frequent releases, you can make your life much simpler if you go for a timestamp based versioning scheme. In devonfw we have bigger milestones every four month and therefore our versioning scheme simply is `YYYY.MM.NNN[-SNAPSHOT]` (e.g. `2021.04.001` is the first release for the milestone planned for April 2021. It may be followed by subsequent releases with smaller changes starting with `2021.04.002` until the next milestone release `2021.08.001` is shipped around August 2021.).
+
+=== Unique version numbers
+
+Once a release has been released or deployed, its version number is used (burned).
+You shall _never ever_ reuse that version number.
+If you later discover that the release artifact is broken and buggy and you have to redo the release, you need to use a new version number.
+Therefore, consider a segment in your versioning scheme (at the end) that you can increase with every release you build.
+Alternatively, you can append timestamps or hashes (e.g. from the code revision) to your version numbers to ensure that every release build produces a unique version number.
+
+=== Third-party version tracking
+
+Try to use third-party artifacts in their pristine form as they are officially released.
+However if you have to modify a third-party artifact, the resulting patched artifact has to have a new version number that is build out of the original release version with an according suffix that indicates the fix (e.g. `1.2.8-rc1` was modified to `1.2.8-rc1-fix1` and later to `1.2.8-rc1-fix2`).
+Before doing this, please check the license of the third-party artifact and ensure you are following the requirements for doing so.
+Ideally the metadata of the artifact should contain information about what was fixed and by whom. 
