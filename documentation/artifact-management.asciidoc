@@ -3,7 +3,7 @@ toc::[]
 
 = Artifact-Management
 
-image::images/artifact-management.png["artifact-management logo"]
+image::images/artifact-management.png["artifact-management logo",width="20%"]
 
 _Artifact-anagement is managing release artifacts of own and foreign software products.
 This includes the identification, persistent storage, dependency tracking, and the license management of all pristine release artifacts from the low-level artifact to the deliverable products for the customer._
