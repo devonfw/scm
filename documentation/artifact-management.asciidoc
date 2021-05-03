@@ -8,6 +8,15 @@ image::images/artifact-management.png["artifact-management logo",width="20%"]
 _Artifact-anagement is the link:scm.asciidoc[SCM] discipline of managing release artifacts for software products.
 This includes the identification, persistent storage, dependency tracking, and the license management of all pristine release artifacts from the low-level artifact to the deliverable products for the customer._
 
+== Related Questions
+
+* What is the version of an artifact?
+* What is the license of an artifact?
+* What is the artifact used for?
+* From where have we received the artifact?
+* Is the artifact pristine or locally patched?
+* Which artifact depends on which other artifacts?
+
 == Best practices
 
 For artifact-anagement you should follow these best-practices:

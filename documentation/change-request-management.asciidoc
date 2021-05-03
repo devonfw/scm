@@ -7,6 +7,12 @@ image::images/change-request-management.png["change-request-management logo", wi
 
 _Change-request-management is the link:scm.asciidoc[SCM] discipline of managing the process of submission, recording, analysing, assessing, judging, prioritising, scheduling, implementing, testing and verifying changes to a software product in a controlled and coordinated manner and within defined scope, quality, time and cost constraints._
 
+== Related Questions
+
+* How do we manage changes?
+* What is our workflow, process, and lifecycle for changes?
+* Is it a bug or a change request?
+
 == Best practices
 
 For change-request-management you should follow these best-practices:

@@ -8,6 +8,13 @@ image::images/release-management.png["release-management logo",width="20%"]
 Release Management is planning and controlling the development, stabilisation, release and maintenance process of a particular software product version in order to maximise the quality of the product version within the defined scope, time and cost constraints.
 In contrast with change request management, release management deals with planned changes and implementation of all requirements in several releases. As soon as the positive decision for a change request has been approved, the change request becomes a part of the release management to decide the proper release that shall contain the change. 
 
+== Related Questions
+
+* Which change goes into which release?
+* How do we "publish" a release?
+* What implications does a release have on other services and the entire IT landscape?
+* Do we use the same version of a database, middleware, library throughout different products?
+
 == Best practices
 
 For release-management you should follow these best-practices:

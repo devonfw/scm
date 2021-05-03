@@ -9,6 +9,14 @@ _Build-management is the link:scm.asciidoc[SCM] discipline of assembling a softw
 To achieve this, the processes of generation, transformation, dependency resolution, verification and packaging are performed.
 The main objective of this discipline is to build a software product step by step and bottom-up from its many input artefacts, and thereby to generate a complete software product as deliverable units for the deployment-management discipline._
 
+== Related Questions
+		
+* Is your build fully automated?
+* What are the fundamental build steps (compilation, packaging, etc.)?
+* What additional steps should you automate (documentation, testing, linting, etc.)? 
+* What is your final deliverable product (WAR-file, installer, container image) and how to build it?
+* Is your build reproducable?
+
 == Best practices
 
 For version-identification you should follow these best-practices:

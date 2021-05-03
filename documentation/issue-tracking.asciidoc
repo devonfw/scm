@@ -7,6 +7,13 @@ image::images/issue-tracking.png["issue-tracking logo",width="20%"]
 
 _Issue-tracking is the link:scm.asciidoc[SCM] discipline of identifying and persistently storing issues (problem tickets, change-requests, etc.) with their metadata and thread of communications for the purpose of tracking the possible long-term evolution, state transition and assignment of the issues._
 
+== Related Questions
+
+* What is the status of an issue?
+* Who is responsible for it?
+* Which software version contained the bug and when was it fixed?
+* When is something scheduled to be fixed?
+
 == Best practices
 
 For issue-tracking you should follow these best-practices:

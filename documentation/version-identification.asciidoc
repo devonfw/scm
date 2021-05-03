@@ -7,6 +7,11 @@ image::images/version-identification.png["version-identification logo",width="20
 
 _Version-indentification is the link:scm.asciidoc[SCM] discipline of defining the structure, syntax and semantic of version identifiers. It aims to ensure a precise identification of any delivered artifact of a software product._
 
+== Related Questions
+
+* Will the next version be `3.1.27` or `3.2.26.5`?
+* Is version `3.1a2` before or after `3.1pre1`?
+
 == Best practices
 
 For version-identification you should follow these best-practices:

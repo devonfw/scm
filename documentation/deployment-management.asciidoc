@@ -11,6 +11,15 @@ It has the purpose of building and maintaining structured and reproducible softw
 The main objective of this discipline is to ensure that a software product is available for operation.
 The deployment units as output of the link:build-management.asciidoc[build-management] form the input to this discipline.
 
+== Related Questions
+
+* Which version is currently installed? Where?
+* Which file belongs to which particular deployment artifact?
+* What deployment artifacts are required for the whole stack?
+* In which order do I have to uprade the deployment artifacts?
+* What are the difference between our environments?
+* How to startup or shutdown the software or service?
+
 == Best practices
 
 For deployment-management you should follow these best-practices:
