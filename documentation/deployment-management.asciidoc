@@ -3,7 +3,7 @@ toc::[]
 
 = Deployment-Management
 
-image::images/deployment-management.png["deployment-management logo"]
+image::images/deployment-management.png["deployment-management logo",width="20%"]
 
 _Deployment Management is the link:scm.asciidoc[SCM] discipline of provisioning, installing, updating, upgrading, migrating and uninstalling software packages in defined environments.
 It has the purpose of building and maintaining structured and reproducible software stacks constrained by package dependencies and individual product life-cycles._
