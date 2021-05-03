@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>com.devonfw</groupId>
+    <artifactId>maven-parent</artifactId>
+    <version>6</version>
+  </parent>
+  <groupId>com.devonfw.doc</groupId>
+  <artifactId>scm</artifactId>
+  <version>dev-SNAPSHOT</version> <!-- This POM will never be released -->
+  <packaging>pom</packaging>
+  <name>${project.artifactId}</name>
+  <description>The devonfw best-practices about software-configuration-management (scm).</description>
+
+  <modules>
+    <module>documentation</module>
+  </modules>
+
+  <properties>
+    <revision>dev-SNAPSHOT</revision>
+    <github.repository>scm</github.repository>
+  </properties>
+</project>

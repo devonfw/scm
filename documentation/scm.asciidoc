@@ -1,11 +1,28 @@
-:toc: macro
-toc::[]
-
 = Software-Configuration-Management
+:description: comprehensive documentation about software-configuration-management.
+:doctype: book
+:toc:
+:toc-title: Table of Contents
+:idprefix:
+:idseparator: -
+:sectnums:
+:reproducible:
+:source-highlighter: rouge
+:listing-caption: Listing
+:chapter-label:
+:partnums:
+:imagesdir: ./
+The devonfw community
+${project.version}, ${buildtime}
+
 
 _Software-configuration-management (SCM) is the application of configuration management principles in the context of software engineering_.
 
 SCM identifies and tracks the configuration of artifacts at various points in time and performs systematic control of changes to the configuration of artifacts for the purpose of maintaining integrity and traceability throughout the whole software development lifecycle.
+
+The following sections contain the complete compendium of https://github.com/devonfw/scm/[software-configuration-management] (SCM).
+You can also read the latest version of this documentation online in the http://github.com/devonfw/scm/wiki[scm wiki]
+or at https://devonfw.com/website/pages/docs/scm.asciidoc.html[scm on devonfw.com].
 
 image::images/scm.png["software-configuration-management model",scaledwidth="80%",align="center",link="https://raw.githubusercontent.com/devonfw/scm/master/documentation/images/scm.svg"]
 
@@ -18,3 +35,29 @@ Software-configuration-management consists of the following domains:
 * link:release-and-change.asciidoc[release & change]
 * link:build-and-deployment.asciidoc[build & deployment]
 * link:configuration.asciidoc[configuration]
+
+include::build-and-deployment.asciidoc[leveloffset=1]
+
+include::build-management.asciidoc[leveloffset=1]
+
+include::deployment-management.asciidoc[leveloffset=1]
+
+<<<<
+
+include::configuration.asciidoc[leveloffset=1]
+
+include::version-identification.asciidoc[leveloffset=1]
+
+include::version-control.asciidoc[leveloffset=1]
+
+include::artifact-management.asciidoc[leveloffset=1]
+
+include::issue-tracking.asciidoc[leveloffset=1]
+
+<<<<
+
+include::release-and-change.asciidoc[leveloffset=1]
+
+include::release-management.asciidoc[leveloffset=1]
+
+include::change-request-management.asciidoc[leveloffset=1]

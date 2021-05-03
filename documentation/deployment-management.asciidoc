@@ -43,7 +43,7 @@ Shutting down servers or starting schema migrations are typical manual tasks.
 === Master the artefact dependencies
 Explicitly track and resolve the transitive run-time dependencies between deployment artefacts to ensure a transparent and traceable installation.
 
-First, clearly distinguish between build-time, test, and run-time dependencies, as they typically have to be resolved at different times (build versus deployment), and plain build-time or test dependencies shall not be included in the release package. Refer to the pattern \ref{pat:CheckDependencies} for further details with reference to this issue.
+First, clearly distinguish between build-time, test, and run-time dependencies, as they typically have to be resolved at different times (build versus deployment), and plain build-time or test dependencies shall not be included in the release package.
 
 === Separate environments
 Separate environments for development, test, acceptance, and production (DTAP):
@@ -85,7 +85,7 @@ The reason is that service windows of operations and the domain-related business
 All operation departments have regulations on how to deploy software systems and what are the preconditions to deploy them into production.
 This includes, for example, that the new software has to support specialised monitoring or logging features, or that it must offer some dictated services, for shutting down or starting the server process.
 
-Hence, for every smooth \textit{going live} process, you must always ensure that the deployment is truly performed hand-in-hand with these stakeholders.
+Hence, for every smooth _going live_ process, you must always ensure that the deployment is truly performed hand-in-hand with these stakeholders.
 This involves clearly communicating what version is being deployed, when it is deployed, why it is deployed, what user-visible changes will be apparent subsequently, etc.
 
 === Make and follow a detailed deployment plan
