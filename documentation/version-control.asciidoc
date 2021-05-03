@@ -24,7 +24,7 @@ For version-control you should follow these best-practices:
 All your work on source-code, configurations, documentation and any other source artifact shall be strictly put into the version-control-system (VCS) of your project.
 Frequently commit your changes and push them to the VCS to avoid loosing any valueable work.
 Your local disc may crash or get corrupted and also you may get sick unplanned and your team should be able to take over.
-If your work is always available on according feature branches, you and your team is prepared for the unexpected.
+If your work is always available on according feature branches, you and your team are prepared for the unexpected.
 A proper backup strategy has to be applied to the VCS on the server-side to ensure the valuable data can not be lost.
 
 === Clear and simple strategy for branching and merging
