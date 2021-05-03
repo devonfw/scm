@@ -43,7 +43,7 @@ The overall goal of a version-control strategy is to support the creation of hig
 We strongly recommend to stick to the following rules:
 
 * There is one single default branch that always represents the latest stable development line. We logically call it _mainline_ and technically it is typically called `master` or `main` (at least in git).
-* This mainline shall always contain a working state that allows to build a working release (see link:build-management.asciidoc#continous-integration[continous-integration]).
+* This mainline shall always contain a working state that allows to build a working release (see link:build-management.asciidoc#continuous-integration[continuous-integration]).
 * Releases shall be created frequently (according to spring or increment planning or even better automated via link:build-management.asciidoc#continuous-deployment[continuous-deployment]) from the mainline.
 * Avoid maintaining older released whenever possible to reduce complexity. However, if you have to use according release-branches that get frequently merged back to the branch they have been created from.
 
