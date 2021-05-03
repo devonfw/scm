@@ -11,3 +11,10 @@ image::images/scm.png["software-configuration-management model",scaledwidth="80%
 
 Please click on the SCM model image to open it as SVG and click on the domains and disciplines topics to open the according documentation.
 
+== Domains
+
+Software-configuration-management consists of the following domains:
+
+* link:release-and-change.asciidoc[release & change]
+* link:build-and-deployment.asciidoc[build & deployment]
+* link:configuration.asciidoc[configuration]

@@ -3,4 +3,62 @@ toc::[]
 
 = Release-Management
 
-TODO
+image::images/release-management.png["release-management logo"]
+
+Release Management is planning and controlling the development, stabilisation, release and maintenance process of a particular software product version in order to maximise the quality of the product version within the defined scope, time and cost constraints.
+In contrast with change request management, release management deals with planned changes and implementation of all requirements in several releases. As soon as the positive decision for a change request has been approved, the change request becomes a part of the release management to decide the proper release that shall contain the change. 
+
+== Best practices
+
+For release-management you should follow these best-practices:
+
+TODO: This seems to be written before the age of agile and needs some facelift ;)
+
+=== Distinguish several release types
+A release should have a type indicating the scope of the change compared to the previous release.
+This will help to determine the impact of an upgrade.
+Best practice is to distinguish between major, minor and micro releases.
+
+Differentiation between at least the following types of releases is recommended:
+
+* A micro release contains only bug fixes, no new features and has no syntactical or semantical effect on interfaces. The result is that minimal testing is required to upgrade to such a release. 
+* Minor releases may have some new features and/or changes in the API. In an ideal case, the interface changes are compatible with the previous version. Therefore, you need more testing and more effort when deploying a minor release than deploying a micro release.
+* Major releases have several completely new features and may be incompatible with older releases. Therefore, you should not only test them, but sometimes you will also have to adapt neighboured systems. So the effort to introduce a major release is quite more than for a minor release. Align the types of releases with your product manager and reflect them in your link:version-identification.asciidoc[version identification].
+ 
+=== Plan at least these engineering phases
+Each release has to pass through all the typical software development phases: specification, design, development, integration test, acceptance test, and production.
+This also includes maintenance releases.
+
+We consider the requirement engineering as done. Now for every release we start with a specification phase. Even for micro releases consisting only of bug fixes, you have to specify, which bugs have to be fixed. During the specification phase the software is not modified.
+Especially for bug fixes and smaller changes, design and development can go hand in hand. It is good, if the same person who designed the solution also implements it. During design and development, the product is initially implemented or modified. It can be unstable and incomplete. This phase should not end before all requirements, change requests and assigned bug fixes have been developed. It also includes the development tests and the resulting bug fixes. For major releases this phase typically takes months, whereas micro releases may only need days.
+
+The integration test phase can start if all changes and new features are implemented. A software release is build and installed in the suitable environment where the tests take place.  The target is to get a stable version. Identified bugs are tracked and fixed in a new development cycle. If the tests pass, you can go on to the next phase.  
+
+Start the acceptance test phase with a suitable version.
+The environment used for acceptance should be as close to the production environment as possible.
+The final release candidate is the last version of the acceptance test phase that is built before deploying it to the production environment.
+No changes at all are allowed between the final release candidate version and the release version.
+If you find bugs in a release candidate, that will be fixed, then you have to build a new release candidate and acceptance tests should be repeated.
+Therefore automation of integrative tests can save a lot of effort.
+Normally you will only find a few minor bugs in your release candidate.
+As explained, bug fixing mainly requires a new test cycle.
+But at this point, the next step depends on the criticality of your system and your estimation of costs versus risks.
+Think about the following alternatives:
+
+* Fix some or all known minor bugs and schedule a new complete user acceptance test cycle.
+* Fix some or all known minor bugs and schedule an incomplete user acceptance test concentrating on the most important use cases and on tests verifying that the bugs are fixed. Such a decision depends also on your estimation of the quality of the system, because you will estimate the probability of introducing a critical bug, which your incomplete test will not show.
+* A third alternative may be, not to fix minor bugs. Although highest possible quality should always your goal, in some special cases it might be better to know of some minor bugs than to risk critical bugs, because there is no time for a new complete acceptance test.
+
+The last phase is the production phase.
+It starts with going live of the release.
+This go-live may include critical and complex steps such as migration of data, which also needs to be planned and tested before.
+If you have done a good job, it will be stable and no bug fix releases required.
+
+The above comments also apply for agile methods, but here the phases are not as strict and separated.
+
+=== Customer interaction is the key
+For custom solution development, a focus on close customer relationships is the key to succeeding.
+
+In contrast to the standard software, the customer is well known to the IT solution provider in the custom solution development.
+A strict focus on close customer relationships in the release activities and change request management is therefore the key to success.
+This means that at least, release management and product management activities must be performed hand-in-hand with the customer and his domain experts.

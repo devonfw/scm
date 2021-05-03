@@ -3,4 +3,24 @@ toc::[]
 
 = Change-Request-Management
 
-TODO
+image::images/change-request-management.png["change-request-management logo"]
+
+_Change-request-management is the link:scm.asciidoc[SCM] discipline of managing the process of submission, recording, analysing, assessing, judging, prioritising, scheduling, implementing, testing and verifying changes to a software product in a controlled and coordinated manner and within defined scope, quality, time and cost constraints._
+
+== Best practices
+
+For change-request-management you should follow these best-practices:
+
+=== Establish a well-defined change request process
+Clarify how the process from submitting to closing a change request works.
+
+All software projects have to deal with less or mostly more unplanned requests for changes -- so called CRs (change requests). Without a well-defined process in which all effects on the project are properly analysed and evaluated, a project is in danger to miss its targets in time and budget. The process should define the responsibilities for submitting CRs, updating CRs, evaluating the business benefit of the CRs, estimating the cost and other effects on the project for the CR, and also rejecting CRs. If the CR will be accepted, it must be assigned to a release, designed, developed and tested. The typical states involved in the process will be submitted, accepted, duplicate, rejected, assigned, resolved and closed.
+
+=== Aligned change management
+Align the change request management of your project with the customers change management.
+
+Your project and product is changing with every release.
+On the other hand, the customer has higher plans for changes of the entire enterprise that have impact on your project.
+Only if these two go together and you have your change request management in sync with the customers change management you will add high value for your customer.
+Therefore, exchange with your customer about ongoing changes on both sides.
+Be careful to distinguish ideas from plans on the political level.

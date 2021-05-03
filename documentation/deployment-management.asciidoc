@@ -3,4 +3,96 @@ toc::[]
 
 = Deployment-Management
 
-TODO
+image::images/deployment-management.png["deployment-management logo"]
+
+_Deployment Management is the link:scm.asciidoc[SCM] discipline of provisioning, installing, updating, upgrading, migrating and uninstalling software packages in defined environments.
+It has the purpose of building and maintaining structured and reproducible software stacks constrained by package dependencies and individual product life-cycles._
+
+The main objective of this discipline is to ensure that a software product is available for operation.
+The deployment units as output of the link:build-management.asciidoc[build-management] form the input to this discipline.
+
+== Best practices
+
+For deployment-management you should follow these best-practices:
+
+=== Take care of the entire software lifecycle
+Focus on the entire lifecycle of a software product by covering the installation, update, upgrade, migration, and removal tasks.
+
+Deployment is concerned with more than the initial installation of software products or the brute-force overwriting of an installation during updates and upgrades. Instead, this discipline covers initial installation, any recurrent automated updating with compatible bug- or security-fixed versions, semi-automated regular upgrading with possibly incompatible new versions, the migration of the entire installation to a different target environment, and the residue-free removal of the entire software product at the end of its operational life. 
+
+If you are going to plan the first installation in a production environment, then you should think about the succeeding installations.
+Some tasks are easy during the initial installation stage, but may become difficult later and vice versa.
+For the initial installation, you need not think about database schema migration.
+This can be a very difficult and time-consuming task for the installation of update releases.
+If you plan this in advance, you can introduce guidelines, which will simplify the schema migration for later releases.
+
+Additionally, it is necessary to ensure that the product installation, update, upgrade, migration and removal procedures are deterministically repeatable.
+This is independent of whether the process is executed manually or automatically.
+In case of  manual installation, a detailed documentation of the process is required for repetitions.
+Shutting down servers or starting schema migrations are typical manual tasks.
+
+=== Master the artefact dependencies
+Explicitly track and resolve the transitive run-time dependencies between deployment artefacts to ensure a transparent and traceable installation.
+
+First, clearly distinguish between build-time, test, and run-time dependencies, as they typically have to be resolved at different times (build versus deployment), and plain build-time or test dependencies shall not be included in the release package. Refer to the pattern \ref{pat:CheckDependencies} for further details with reference to this issue.
+
+=== Separate environments
+Separate environments for development, test, acceptance, and production (DTAP):
+
+* The development environment is used for editing source code and building the software product in the context of a single developer's work. It usually hosts the Integrated Development Environment (IDE) of developers and is located on the developers' desktops or on a dedicated development server.
+* The test environment is used for regularly integrating the software product, executing test cases and centrally reporting the results to the developer team. It may also host the Continuous Integration (CI) service.
+* The acceptance environment is used for final acceptance tests. It should be a production like environment and is usually provided by the customer.
+* The production environment is used for operating the software product in its intended production context. It is owned and controlled by the customer.
+
+According to the actual requirements, you may have even more environments e.g. a pre-production environment that is more or less identical to the production environment.
+However, when doing xref:continuous-deployment[continuous-deployment] you may omitt an acceptance environment.
+All software is executed in a particular environment.
+
+=== Deploy the complete software stack
+During deployment, focus on complete software stacks instead of single software packages to ensure that the external requirements of a software package are exactly fulfilled.
+
+Normally, deployment is not only about the installation of a single product.
+Nowadays, almost all software products have numerous external run-time dependencies
+(application libraries, system services, run-time configurations, shared databases, etc.).
+It is in the responsibility of architects and developers to ensure that all these external run-time requirements are precisely known in advance and fulfilled during deployment.
+Therefore, it is a good practice to focus on the deployment of complete software stacks instead of single software products.
+
+=== Continuous deployment
+Automation is key, saves a lot of time and avoids manual mistakes.
+Therefore, your entire link:build-management.asciidoc[build-management] shall be automated as well as the installation and upgrading of your software products.
+By combining and continuously running the build and deployment automation you get continuous deployment.
+Projects should aim to at least continuously deploy to test environments.
+This already includes automatic versining and upgrading of database schemas (unless schemaless databases are used).
+Further, you should utilize all options of your target environment platform with containerization, hardware-as-code, DevOps, etc.
+In contexts where time-to-market is key and no regulatory constraints prevent automated deployment to production you should go for full continuous deployment to production.
+However, be aware that this requires a very high-level of experience, automated testing and quality assurance.
+Further, you need concepts like canary deployments, advanced security for your version-control-system, etc.
+
+=== Involve operations
+Perform production environment deployments hand-in-hand with the operations team and domain experts to ensure a smooth_going live_ process.
+
+The deployment of the production environment must involve operations and your customer's domain experts.
+The reason is that service windows of operations and the domain-related business processes have to be taken into account for glitch-free deployment.
+All operation departments have regulations on how to deploy software systems and what are the preconditions to deploy them into production.
+This includes, for example, that the new software has to support specialised monitoring or logging features, or that it must offer some dictated services, for shutting down or starting the server process.
+
+Hence, for every smooth \textit{going live} process, you must always ensure that the deployment is truly performed hand-in-hand with these stakeholders.
+This involves clearly communicating what version is being deployed, when it is deployed, why it is deployed, what user-visible changes will be apparent subsequently, etc.
+
+=== Make and follow a detailed deployment plan
+A detailed plan is required for all subtasks of the deployment including all tasks that are prerequisites for the deployment.
+
+The deployment of complex software systems with potentially many interfaces to neighboured or external systems is a task that should already start in the analysis or design phase.
+Here you should e.g. think about questions like "In which order shall old interfaces be replaced with new ones?" or "How to migrate the business critical data?".
+Therefore, make a plan including topics as data migration, database schema migration, software deployment,
+environment specific configurations, fallback scenario, point of no return, smoke test, down times etc.
+Important questions to be answered for each topic are:
+
+* How long does it take?
+* Who executes the steps and when?
+* What prerequisites have to be met?
+* What can be automated and what is better done manually?
+
+From such a plan, you should systematically develop a detailed documented deployment process.
+This deployment process should be used and improved during each deployment in the test environment.
+That is your chance to be as sure as possible that everything will work fine for the go-live.

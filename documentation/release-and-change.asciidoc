@@ -1,0 +1,14 @@
+:toc: macro
+toc::[]
+
+= Release & Change
+
+_Release & change is the link:scm.asciidoc[SCM] domain through which the stable delivery of a software product is ensured.
+It combines both the management of complete releases and the management of single change requests assigned to releases._
+
+== Disciplines
+
+The release & change domain consists of the following disciplines:
+
+* link:release-management.asciidoc[release-management]
+* link:change-request-management.asciidoc[change-request-management]
