@@ -3,7 +3,7 @@ toc::[]
 
 = Change-Request-Management
 
-image::images/change-request-management.png["change-request-management logo"]
+image::images/change-request-management.png["change-request-management logo", width="20%"]
 
 _Change-request-management is the link:scm.asciidoc[SCM] discipline of managing the process of submission, recording, analysing, assessing, judging, prioritising, scheduling, implementing, testing and verifying changes to a software product in a controlled and coordinated manner and within defined scope, quality, time and cost constraints._
 
