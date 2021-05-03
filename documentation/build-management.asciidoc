@@ -3,7 +3,7 @@ toc::[]
 
 = Build-Management
 
-image::images/build-management.png["build-management logo"]
+image::images/build-management.png["build-management logo",width="20%"]
 
 _Build-management is the link:scm.asciidoc[SCM] discipline of assembling a software product out of its source artefacts.
 To achieve this, the processes of generation, transformation, dependency resolution, verification and packaging are performed.
