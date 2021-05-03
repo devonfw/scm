@@ -45,7 +45,7 @@ We strongly recommend to stick to the following rules:
 * There is one single default branch that always represents the latest stable development line. We logically call it _mainline_ and technically it is typically called `master` or `main` (at least in git).
 * This mainline shall always contain a working state that allows to build a working release (see link:build-management.asciidoc#continuous-integration[continuous-integration]).
 * Releases shall be created frequently (according to sprint or increment planning or even better automated via link:deployment-management.asciidoc#continuous-deployment[continuous-deployment]) from the mainline.
-* Avoid maintaining older released whenever possible to reduce complexity. However, if you have to use according release-branches that get frequently merged back to the branch they have been created from.
+* Avoid maintaining older released whenever possible to reduce complexity. However, if you have to do, use according release-branches that you frequently merge back to the branch they have been created from.
 
 ==== Feature-branch
 
