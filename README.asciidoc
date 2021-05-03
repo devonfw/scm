@@ -1,0 +1,10 @@
+:toc: macro
+toc::[]
+
+= Software-Configuration-Management
+
+This repository provides documentation and best-practices on link:documentation/scm.asciidoc[software-configuration-management] (SCM).
+
+image::documentation/images/scm.png["software-configuration-management model",scaledwidth="80%",align="center",link="https://raw.githubusercontent.com/devonfw/scm/master/documentation/images/scm.svg"]
+
+Please click on the SCM model image to open it as SVG and click on the domains and disciplines topics to open the according documentation.
