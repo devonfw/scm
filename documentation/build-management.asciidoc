@@ -85,3 +85,6 @@ This allows building of software-packages only once and then deploying them to d
 This will guarantee that the software going live has been properly tested.
 
 The environment specific configurations can also be bundled as packages per target environment.
+
+=== Additional aspects
+More fine-grained recommendations or best-practices for specific build tools and technologies can be found in link:build/README.asciidoc[build specific recommendations].
