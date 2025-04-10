@@ -51,7 +51,7 @@ This also prevents cyclic dependencies on a higher level what it is a commonly a
 Cons:
 
 * **Overhead**: +
-Every additional module is causing overhead as already discussed this with our extreme 2. example above.
+Every additional module is causing overhead as already discussed with our extreme 2. example above.
 * **Maintainability**: +
 While the maintainability can improve by splitting your code-base into a few number of modules with bigger number of modules this tips over to the oposite:
 With hundreds modules and according build configuration files it can get really hard to keep things consistent and trace down problems.
