@@ -1,9 +1,9 @@
 :toc: macro
 toc::[]
 
-= Module-Structure
+= Module-Split
 
-If you have a non-tivial software project you should ask yourself how to structure your code into modules.
+If you have a non-tivial software project you should ask yourself how to split your code-base into modules.
 This article tries to abstract from concrete build tools like maven, gradle, npm, or the like since that should not really matter.
 To understand the impact of splitting your code-base into modules, we first want to look at the two extremes:
 
