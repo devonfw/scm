@@ -19,7 +19,7 @@ Obviously if you compare 1. and 2. you can easily see that with larger code-base
 * Each build step (compile, find and execute tests, package artifact, etc.) gets executed again and again for every module.
 * The more modules you have the more overhead you create already with bootrapping such step.
 * Assuming you have a plugin-based build-system like maven or gralde and you may have a plugin that takes 1 second to bootstrap.
-* If we have 600 modules (because we followed apprach 2. with 599 source files) we have 10 minutes of pure waste for this bootstrapping compared to 1 second for approach 1. with only a single module.
+* If we have 600 modules (e.g. because we followed apprach 2.) we have 10 minutes of pure waste for this bootstrapping compared to 1 second for approach 1. with only a single module.
 * The more modules you have the more internal dependencies you are creating and the more complexity you add to your build-system and epscially the IDE.
 * While build-tools like Maven can handle growing complexity quite well, the common IDEs like Eclipse or IntelliJ will struggle with it.
 * Especially IDE performance does not scale linear with the number of modules but almost quadratic. 
