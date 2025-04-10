@@ -11,7 +11,7 @@ To understand the impact of splitting your code-base into modules, we first want
 2. You put every main artifact (source code file, class, etc.) into a separate module.
 
 You might easily see that 2. does not really make sense and causes a lot of overhead.
-In case you split your code-base into modules you should follow clear business criteria and follow Separation of Concerns (SoC).
+In case you split your code-base into modules you should follow clear business criteria and Separation of Concerns (SoC).
 However, 1. is a valid option espcially in smaller projects.
 Anyhow, we want to discuss these two extremes to better compare aspects like build-time and developer joy.
 Obviously if you compare 1. and 2. you can easily see that with larger code-bases 2. is much slower:
