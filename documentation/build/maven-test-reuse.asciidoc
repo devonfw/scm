@@ -127,9 +127,9 @@ Your build and IDEs only have to deal with "normal" dependencies and get faster 
 
 Cons:
 
-* *Extra module(s)*:
+* *Extra module(s)*: +
 For each set of reusable test-infrastructure you need to create an additional maven module including `pom.xml`, `<module>` tag in parent POM, and folder structure.
-* *Overhead dues to cyclic dependencies*:
+* *Overhead due to cyclic dependencies*: +
 Sometimes you end up with a problem since obviously maven does not support cyclic dependencies and has to be able to build each module independently.
 In the example above you might have the problem that `CoolTestExtension` requires `SomeClass`.
 Now if `SomeClassTest` dependends both on `SomeClass` and on `CoolTestExtension`, you end up in a problem that can easily be solved with `test-jars` approach.
