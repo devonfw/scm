@@ -1,0 +1,78 @@
+:toc: macro
+toc::[]
+
+= Module-Structure
+
+If you have a non-tivial software project you should ask yourself how to structure your code into modules.
+This article tries to abstract from concrete build tools like maven, gradle, npm, or the like since that should not really matter.
+To understand the impact of splitting your code-base into modules, we first want to look at the two extremes:
+
+1. You put all your code into a single module.
+2. You put every main artifact (source code file, class, etc.) into a separate module.
+
+You might easily see that 2. does not really make sense and causes a lot of overhead.
+In case you split your code-base into modules you should follow clear business criteria and follow Separation of Concerns (SoC).
+However, 1. is a valid option espcially in smaller projects.
+Anyhow, we want to discuss these two extremes to better compare aspects like build-time and developer joy.
+Obviously if you compare 1. and 2. you can easily see that with larger code-bases 2. is much slower:
+
+* Each build step (compile, find and execute tests, package artifact, etc.) gets executed again and again for every module.
+* The more modules you have the more overhead you create already with bootrapping such step.
+* Assuming you have a plugin-based build-system like maven or gralde and you may have a plugin that takes 1 second to bootstrap.
+* If we have 600 modules (because we followed apprach 2. with 599 source files) we have 10 minutes of pure waste for this bootstrapping compared to 1 second for approach 1. with only a single module.
+* The more modules you have the more internal dependencies you are creating and the more complexity you add to your build-system and epscially the IDE.
+* While build-tools like Maven can handle growing complexity quite well, the common IDEs like Eclipse or IntelliJ will struggle with it.
+* Especially IDE performance does not scale linear with the number of modules but almost quadratic. 
+* Complex projects often tend to also have steps for code-generation at build-time where such 1 second of overhead can be a realistic example and give IDEs a really hard job to update your project to a consistent state after doing a change.
+* If you operate in a large closed-source project with many modules you will hit bugs in common IDEs.
+When you report such bug and ask for support, you will be asked for a reproducer.
+In reality you will fail to do so because you cannot provide your entire code and if you extract a simple example all will work fine.
+IDEs are simply not tested with such complex edge-cases and their vendors have a hard job to test for such complex scenarios.
+* This is often under-estimated by designers and architects and only gets revealed once your project has grown in complexity over time and disaster is near but you are already trapped in legacy and refactoring may not be easy anymore.
+
+== Assessment of module separation
+
+In general splitting your code-base into (many) modules has the following impact.
+
+Pros:
+
+* **Separation of Concerns**: +
+You (can) follow SoC and it gets easier to work on different aspects and in different areas of your project.
+* **Clean Dependencies**: +
+If you follow SoC and have modules per aspect then you also get clean dependencies.
+It gets much easier to understand why a 3rd party dependency is needed if it associated in a named sub-module.
+In case you only have a single module, then all your dependencies are managed in a single location and you may loose track which aspect of your code-base actually requires this dependency.
+Even worse due to changes dependencies may also become obsolete with changes and if you lost track of your dependencies you might end up to forget dependencies that are actually not required anymore.
+* **Clean Visibilities** +
+The same also applies to your project internal dependencies.
+If you write code in module X that depends on module Y you cannot reference code from module Z unless X also gets a dependency to it.
+This also prevents cyclic dependencies on a higher level what it is a commonly agreed anti-pattern.
+
+Cons:
+
+* **Overhead**: +
+Every additional module is causing overhead as already discussed this with our extreme 2. example above.
+* **Maintainability**: +
+While the maintainability can improve by splitting your code-base into a few number of modules with bigger number of modules this tips over to the oposite:
+With hundreds modules and according build configuration files it can get really hard to keep things consistent and trace down problems.
+Advanced build-systems like Maven or Gradle give you powerful features with inheritance, variables, plugins, etc. 
+You can quickly lose track if you want to understand a module if you also have to read and understand multiple parent build configurations with all their magic to get the big-picture.
+
+== Conclusion
+
+Surely it always depends on the situation what to do.
+Especially when you create a library or framework, then splitting up into modules makes a lot of sense and increases flexibility for users to pick and choose.
+However, when it comes to an application this typically differs and modules are only used internally.
+In general your priority number one should be KISS (keep it small and simple).
+Large monolithic application have become a severe problem for large enterprises slowing down progress and increasing costs.
+Modularisation should mean to split such monoliths into smaller self-contained applications and not splitting the monolith it into many modules (modulith).
+This is massively propagated by https://en.wikipedia.org/wiki/Microservices[microservices]:
+Smaller self-contained applications can be managed by smaller teams that take responsibility and code-ownership.
+Also it gets easier to apply refactorings or updates increasing time-to-market and security.
+
+Please be aware that you can use alternative approaches to splitting into (many) modules:
+
+* Already within a module you can split code into folders (e.g. sub-packages).
+* To avoid undesired code-dependencies and enforce architecture rules, you can use tools like https://www.archunit.org/[ArchUnit].
+
+As final statement if you have a few modules (1-5) you should be fine and if you have hundreds or even thousands of modules you typically are doing something wrong and have problems.
