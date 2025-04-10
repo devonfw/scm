@@ -1,0 +1,9 @@
+== Build specific recommendations
+
+For general aspects and best-practices see link:../build-management.asciidoc[build-management].
+
+Here you will find more detailed or specific recommendations (e.g. for Maven):
+
+* link:maven-dependency-management.asciidoc[Maven Dependency Management]
+* link:maven-test-reuse.asciidoc[Maven Test Reuse]
+* link:module-split.asciidoc[Module Split]
