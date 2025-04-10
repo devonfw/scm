@@ -1,0 +1,32 @@
+:toc: macro
+toc::[]
+
+= Dependency-Management
+
+To make this guide short:
+When using Maven link:module-split.asciidoc[multi-module projects], you should always use dependency-management.
+Details and explanations can be found in https://maven.apache.org/guides/introduction/introduction-to-dependency-mechanism.html#Dependency_Management[Maven dependency management documentation].
+
+Additional best-practices:
+
+* Define all dependency versions for your project in a single `<dependencyManagement>` section in your top-level POM.
+Only use `<dependencyManagement>` in child module `pom.xml` files if you explicitly need to import or define a BOM.
+* Still define variables for versions and follow strict naming conventions.
+Especially if such POM gets reused in multiple projects this is an absolute-best-practice since it allows overriding versions easily in child POM.
+For a good example follow the patterns from https://repo1.maven.org/maven2/org/springframework/boot/spring-boot-dependencies/3.4.4/spring-boot-dependencies-3.4.4.pom[spring-boot-dependencies].
+* Avoid to define `<scope>` in `<dependencyManagement>`.
+Some people think it may be smart to add `<scope>test</test>` in `<dependencyManagement>` for dependencies like `junit`.
+However, if you read our link:maven-test-reuse.asciidoc[maven-test-reuse] guide, you will notice that such dependencies like `junit` may also be used in test-infrastructure modules where they need `compile` scope.
+Since maven is following convention-over-configuration the default scope is `compile` if omitted by default.
+However, if `<scope>` is defined in `<dependencyManagement>` this will override the default for that dependency.
+Once you ever ran in the pitfall that you added a dependecy in a test-infrastructure module and ende up with compile errors because your code in `src/main/java` cannot see code from libraries that you actually have declared as dependency,
+you will notice the problem of such "black-magic".
+Therefore strictly avoid this to make your life easier.
+* If you create a library and provide a BOM please consider defining a `minimal` BOM with only your own dependencies but no other 3rd party.
+You can still provide an additional `full` BOM with the `<dependencyManagement>` for all required 3rd party on top of your `minimal` BOM.
+The rationale is that some projects may use and mix many different libraries together.
+When multiple BOMs are imported into your `<dependencyManagement>` that contribute different versions for the same dependency then it gets very tricky.
+In such case the order of your `import` scoped depdendency (BOM) determines which version wins.
+If that even happens along the inheritance hierarchy of multiple POMs you need a real maven guru to explain what is happening if something goes wrong.
+Most projects want to give precendence to BOMs from major frameworks like spring-boot or quarkus rather than some additional library for a small aspect.
+If such library provides a `minimal` BOM it will not conflict with the framework BOM and if the project only imports such `minimal` BOM a lot of pitfalls and headaches can be avoided.
