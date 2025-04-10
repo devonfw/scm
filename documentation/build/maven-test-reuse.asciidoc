@@ -1,0 +1,150 @@
+:toc: macro
+toc::[]
+
+= Reuse test code in Maven
+
+In bigger projects, you often have the need to reuse test-code in other modules.
+Typically this is test-infrastructure such as JUnit extensions, custom assertions, builders for test-data, static helper methods, etc.
+In order to archive the reuse of such test-code there are different patterns.
+As these patterns have a big impact on your project and various pros and cons it is good to understand the impact of your choice before you decide.
+
+== Test Jars
+
+A quite obvious pattern is to use test jars as described https://maven.apache.org/plugins/maven-jar-plugin/examples/create-test-jar.html[here].
+```
+«project-root»
+├──/my-module
+|  ├──/src
+|  |  ├──/main
+|  |  |  ├──/java/«package-path»
+|  |  |  |  └──/java/SomeClass.java
+|  |  |  └──/resources
+|  |  └──/test
+|  |     ├──/java/«package-path»
+|  |     |  ├──/CoolTestExtension.java
+|  |     |  └──/SomeClassTest.java
+|  |     └──/resources
+|  └──/pom.xml
+└──/ohter-module
+   ├──/src
+   |  └──/...
+   └──/pom.xml
+```
+
+With this in the POM of `other-module`:
+```
+<dependency>
+  <groupId>${project.groupId}</groupId>
+  <artifactId>my-module</artifactId>
+</dependency>
+<!-- Allow reuse of e.g. `CoolTestExtension` -->
+<dependency>
+  <groupId>${project.groupId}</groupId>
+  <artifactId>my-module</artifactId>
+  <type>test-jar</type>
+  <scope>test</scope>
+</dependency>
+```
+
+While this approach is wide-spread it has significant downsides and problems that users typically are not aware of.
+Here is a summary of the approach.
+
+Pros:
+
+* **Simple**: +
+You do not need to create extra modules for test-infrastructure.
+* **Flexible**: +
+You can have your test-infrastructure depend on code from `src/main/java` in the same module and also have tests in that module using the test-infrastructure.
+
+Cons:
+
+* **Broken Design**: +
+The test jar contains all your test-code (compiled from `src/test/java` including `src/test/resources`) and never are a well defined module API (in the example also `SomeClassTest` sneaks in).
+Therefore you mess your design of test-infrastructure since also JUnit tests from other modles sneak onto the classpath of other modules and get visible in code-completion, etc.
+* **Flawed Dependencies**: +
+The dependency type `test-jar` has been added to maven but due to its complexity it is not consistent. 
+You might expect that the test-depdendencies of your `test-jar` dependency are transitive but this is not the case (maven never treats `test` scoped dependencies transitive).
+Still you need to define all your `test` scope dependecies redundantly.
+* **Instability**: +
+After all using `test-jar` dependencies is still an edge-case that is not on the happy-path and therefore IDEs (Eclipse, IntelliJ, etc.) have bugs in bigger projects when this pattern is used.
+You need to understand that maven multi-module projects are already quite some complexity to handle for IDEs with transitive dependencies, filtering, plugings, and configurable build-lifecycle.
+When you edit your code (Java files, resources, POMs) the IDE has to know what other code depending on your change needs to be updated.
+Now `test-jar` dependencies add yet another layer of complexity on top of this that needs extra handling.
+This slows down the coding experience in your IDE and since this is not tested as well it will also lead to strange errors where you need to constantly rebuild and refresh to make things work.
+* **Overhead**: +
+Typically you add the test jar generation to your top-level POM and therefore you build test-jar artifacts for all your modules that all get created, installed, and deployed.
+This can be avoided by only adding this maven config in dedicated POMs where actually required but this again causes duplications (violates DRY).
+
+== Test Modules
+
+To make your test-infrastructure explicit, you can follow the way of all official providers of test-infrastructure like JUnit, AssertJ, etc.:
+
+* Simply create an explicit `*-test` module in your maven structure.
+* Put your test-infrastructure code into `src/main/java` (!) of that test module.
+* Add all your dependencies (including JUnit, AssertJ, etc.) in this module with the default scope `compile` (and not `test`!)
+* In modules that need this test-infrastructure add a dependency to it with `test` scope as usual.
+
+```
+«project-root»
+├──/my-module
+|  ├──/src
+|  |  ├──/main
+|  |  |  ├──/java/«package-path»
+|  |  |  |  └──/java/SomeClass.java
+|  |  |  └──/resources
+|  |  └──/test
+|  |     ├──/java/«package-path»
+|  |     |  └──/SomeClassTest.java
+|  |     └──/resources
+|  └──/pom.xml
+├──/my-module-test
+|  ├──/src
+|  |  └──/main
+|  |     ├──/java/«package-path»
+|  |     |  └──/CoolTestExtension.java
+|  |     └──/resources
+|  └──/pom.xml
+└──/ohter-module
+   ├──/src
+   |  └──/...
+   └──/pom.xml
+```
+
+Here is the summary of this approach.
+
+Pros:
+
+* **Clean**: +
+You have a clean design of what is reusalbe test-infrastructure separated from your actual tests and classes only needed internally for the tests of a module.
+On your test-classpath in other modules using the test module, you will only "see" the code you explicitly put into the according test module.
+Doing this separation in a large project later when realizing that the `test-jars` pattern did not work well, is a huge effort and very messy job.
+* *Centralized test dependencies*: +
+In your test module, you can add all your common test dependencies (JUnit, AssertJ, Mockito, Wiremock, REST assured, etc.) in a central place.
+Even if you create multiple additional test modules, they can depend on the first one making reuse of these test dependencies.
+Then all your other modules using this only need a `test` scoped dependency to the according test module in order to "have" all they typically need for writing tests.
+* **Stable**: +
+Your build and IDEs only have to deal with "normal" dependencies and get faster and more stable when dealing with changes, refresh, rebuild, reload, and restart.
+
+Cons:
+
+* *Extra module(s)*:
+For each set of reusable test-infrastructure you need to create an additional maven module including `pom.xml`, `<module>` tag in parent POM, and folder structure.
+* *Overhead dues to cyclic dependencies*:
+Sometimes you end up with a problem since obviously maven does not support cyclic dependencies and has to be able to build each module independently.
+In the example above you might have the problem that `CoolTestExtension` requires `SomeClass`.
+Now if `SomeClassTest` dependends both on `SomeClass` and on `CoolTestExtension`, you end up in a problem that can easily be solved with `test-jars` approach.
+To solve it, you could move `SomeClassTest` to `my-module-test/src/test/java`.
+In general it is better to design test-infrastructure to avoid such problems.
+
+== Conclusion
+
+Surely it always depends on the situation what pattern fits best.
+However, as a general recommendation it is better to go for the `test modules` and avoding `test jars`.
+After dealing with both patterns for decades, it turnes out that actually the cons of `test modules` can also be seen as benefits:
+In many projects we have seen that just because `test jars` pattern makes it too easy to reuse test code, it is done without design or thinking.
+When you have a little extra effort to make things work, you typically think of your design upfront leading to better results.
+Also it is not always a good idea to make your reusable test-code highly dependent on your main code (business logic).
+Even though an important design principle is to avoid redundancies this should always be balanced with the costs needed to avoid them.
+In test code it is often acceptable or even desired to explicitly have a literal value instead of reusing a constant.
+Finally, after analyzing very large monolithic projects groven over years we could see that `test jars` pattern can easily lead to big problems and therefore turned into an anti-pattern.
+In general we can recomment to use `test modules` by default and only consider `test jars` only for situations where the pros really stand out.
