@@ -59,8 +59,10 @@ You can have your test-infrastructure depend on code from `src/main/java` in the
 Cons:
 
 * **Broken Design**: +
-The test jar contains all your test-code (compiled from `src/test/java` including `src/test/resources`) and never are a well defined module API (in the example also `SomeClassTest` sneaks in).
+The test jar contains all your test-code (compiled from `src/test/java` including `src/test/resources`) and never has a well defined module API (in the example also `SomeClassTest` sneaks in).
 Therefore you mess your design of test-infrastructure since also JUnit tests from other modles sneak onto the classpath of other modules and get visible in code-completion, etc.
+However, your tests of a module should be considered as an "implementation secret".
+The idea of modules is encapsulation (SoC) and if you make all your test-code visible to all other modules you easily violate this principle.
 * **Flawed Dependencies**: +
 The dependency type `test-jar` has been added to maven but due to its complexity it is not consistent. 
 You might expect that the test-depdendencies of your `test-jar` dependency are transitive but this is not the case (maven never treats `test` scoped dependencies transitive).
@@ -133,7 +135,7 @@ For each set of reusable test-infrastructure you need to create an additional ma
 Sometimes you end up with a problem since obviously maven does not support cyclic dependencies and has to be able to build each module independently.
 In the example above you might have the problem that `CoolTestExtension` requires `SomeClass`.
 Now if `SomeClassTest` dependends both on `SomeClass` and on `CoolTestExtension`, you end up in a problem that can easily be solved with `test-jars` approach.
-To solve it, you could move `SomeClassTest` to `my-module-test/src/test/java`.
+To solve it without `test-jars`, you could move `SomeClassTest` to `my-module-test/src/test/java`.
 In general it is better to design test-infrastructure to avoid such problems.
 
 == Conclusion
