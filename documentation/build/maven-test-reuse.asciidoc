@@ -148,5 +148,5 @@ When you have a little extra effort to make things work, you typically think of 
 Also it is not always a good idea to make your reusable test-code highly dependent on your main code (business logic).
 Even though an important design principle is to avoid redundancies this should always be balanced with the costs needed to avoid them.
 In test code it is often acceptable or even desired to explicitly have a literal value instead of reusing a constant.
-Finally, after analyzing very large monolithic projects groven over years we could see that `test jars` pattern can easily lead to big problems and therefore turned into an anti-pattern.
-In general we can recomment to use `test modules` by default and only consider `test jars` only for situations where the pros really stand out.
+Finally, after analyzing very large monolithic projects grown over years we could see that `test jars` pattern can easily lead to big problems and therefore turned into an anti-pattern.
+In general we can recomment to use `test modules` by default and only consider `test jars` for situations where the pros really stand out.
