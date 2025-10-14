@@ -76,6 +76,9 @@ This slows down the coding experience in your IDE and since this is not tested a
 * **Overhead**: +
 Typically you add the test jar generation to your top-level POM and therefore you build test-jar artifacts for all your modules that all get created, installed, and deployed.
 This can be avoided by only adding this maven config in dedicated POMs where actually required but this again causes duplications (violates DRY).
+* **Broken Build**: +
+As a maven user, I would expect that I can run `mvn compile` or `mvn test` or `mvn package` to build the project without installing it to the local repository.
+However, when using `test-jar` dependencies this will stop working and you get errors like `Caused by: org.eclipse.aether.transfer.ArtifactNotFoundException: Could not find artifact «groupId»:«artifactId»:jar:tests:«version»`.
 
 == Test Modules
 
